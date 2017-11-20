@@ -117,11 +117,11 @@ func partitionHoare<T:Comparable>(items:inout [T], low:Int, high:Int, by: SortCo
     while true {
         repeat {
             i += 1
-        } while by(items[i], pivot)
+        } while by(items[i],pivot)
         
         repeat {
             j -= 1
-        } while !by(items[j], pivot)
+        } while by(pivot,items[j])
         
         if i >= j {
             break

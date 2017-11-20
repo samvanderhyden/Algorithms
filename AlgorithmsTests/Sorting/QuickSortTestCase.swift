@@ -9,7 +9,7 @@
 import XCTest
 @testable import Algorithms
 
-class QuicksortTestCase: XCTestCase {
+class QuickSortTestCase: XCTestCase {
     
     // Test with random list
     func testQuicksortLumato(){
@@ -19,13 +19,19 @@ class QuicksortTestCase: XCTestCase {
     }
     
     // Test all same items
-    func testQuicksortLumatoAllSame(){
+    func testQuicksortLumatoAllSame() {
         var items = Array(0..<100).map { _ in 0 }
         quickSort(items: &items, partitionType: .lumato)
         verifySort(items: items)
     }
-
     
+    // Test with descending comparator
+    func testQuickSortLumatoDescending() {
+        var items = randomIntList(size: 100, lower: 0, upper: 200)
+        quickSort(items: &items, partitionType: .lumato, by: { $1 < $0 })
+        verifySort(items: items, by: { $1 < $0 })
+    }
+
     // Test performance of lumato partition
     // MBP avg = 0.070 seconds
     func testQuicksortLumatoPerf() {
@@ -39,6 +45,7 @@ class QuicksortTestCase: XCTestCase {
     func testQuicksortHoare(){
         var items = randomIntList(size: 100, lower: 0, upper: 200)
         quickSort(items: &items, partitionType: .hoare)
+        print("\(items)")
         verifySort(items: items)
     }
     
@@ -49,8 +56,15 @@ class QuicksortTestCase: XCTestCase {
         verifySort(items: items)
     }
     
+    // Test with descending comparator
+    func testQuickSortHoareDescending() {
+        var items = randomIntList(size: 100, lower: 0, upper: 200)
+        quickSort(items: &items, partitionType: .hoare, by: { $1 < $0 })
+        verifySort(items: items, by: { $1 < $0 })
+    }
+    
     // Test performance of hoare partition
-    // MBP average = 0.035 seconds
+    // MBP average = 0.047 seconds
     func testQuicksortHoarePerf() {
         // This is an example of a performance test case.
         self.measure {
