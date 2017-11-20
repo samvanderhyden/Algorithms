@@ -18,6 +18,7 @@ class SelectionSortTestCase: XCTestCase {
         verifySort(items: items)
     }
     
+    // Test with descending comparator
     func testDescendingSelectionSort() {
         var items = randomIntList(size: 100, lower: 0, upper: 200)
         selectionSort(items: &items, by: { $1 < $0 })
