@@ -40,6 +40,7 @@ class InsertionSortTestCase: XCTestCase {
             let _ = insertionSort(items: items)
         }
     }
+    
 }
 
 

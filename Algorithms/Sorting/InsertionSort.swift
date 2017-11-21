@@ -11,16 +11,14 @@ import Foundation
 /**
  Insertion sort: a non optimal sorting algorithm where the output is iterated over with each item from the input in order to determine that items insertion position
  
- Performance: This algorithm runs in O(n^2) time as for each item in the input, the output must be looped through
- */
-
-/**
- Sort items using insertion sort
  - param items: the list of items to sort
  - param by: the comparator to use, defaults to <
  - return an array of sorted items, in ascending order
+ 
+ Performance: This algorithm runs in O(n^2) time as for each item in the input, the output must be looped through
+
  */
-func insertionSort<T:Comparable>(items:[T], by:SortComparator<T> = { $0 < $1 }) -> [T] {
+func insertionSort<T:Comparable>(items: [T], by: SortComparator<T> = { $0 < $1 }) -> [T] {
     var output = [T]()
     for val in items {
         var insertionIdx = 0
