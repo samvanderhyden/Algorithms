@@ -6,8 +6,6 @@
 //  Copyright © 2017 Sam Vanderhyden. All rights reserved.
 //
 
-import Foundation
-
 import XCTest
 @testable import Algorithms
 
