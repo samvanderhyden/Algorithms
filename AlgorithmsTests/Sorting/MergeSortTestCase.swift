@@ -34,15 +34,6 @@ class MergeSortTestCase: XCTestCase {
         verifySort(items: items)
         XCTAssert(items.count == sorted.count , "Result has size of input arrays")
     }
-    
-    // Test performane on 10,000 item list
-    // MBP avg = 0.124 seconds
-    func testMergeSortPerf() {
-        self.measure {
-            let items = randomIntList(size: 10000, lower: 0, upper: 200)
-            let _ = mergeSort(items: items)
-        }
-    }
    
     // Test the merge function
     func testMergeLists(){

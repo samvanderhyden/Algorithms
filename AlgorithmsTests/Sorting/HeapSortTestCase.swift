@@ -11,24 +11,24 @@ import XCTest
 
 class HeapSortTestCase: XCTestCase {
 
+    // Test heap sort
     func testHeapSort() {
         var items = randomIntList(size: 100, lower: 0, upper: 200)
         heapSort(items: &items)
         verifySort(items: items)
     }
     
-    // Test bubble sort performance
-    // MBP avg = .096 seconds
-    func testHeapSortPerformance() {
-        self.measure {
-            var items = randomIntList(size: 10000, lower: 0, upper: 200)
-            heapSort(items: &items)
-        }
+    // Test heap sort descending
+    func testHeapSortDescending() {
+        var items = randomIntList(size: 100, lower: 0, upper: 200)
+        heapSort(items: &items, by: { $1 < $0 })
+        verifySort(items: items, by: { $1 < $0 })
     }
     
+    // Test the build heap function
     func testBuildHeap(){
-        var items = [1,2,3,4] //randomIntList(size: 100, lower: 0, upper: 200)
-        buildHeap(items: &items, range: 0..<items.count)
+        var items = [1,2,3,4,5] //randomIntList(size: 100, lower: 0, upper: 200)
+        buildHeap(items: &items, range: 0..<items.count, by: { $0 < $1 })
         print("Heap: \(items)")
         for idx in 0..<items.count {
             let val = items[idx]
@@ -43,6 +43,4 @@ class HeapSortTestCase: XCTestCase {
             }
         }
     }
-    
-    
 }

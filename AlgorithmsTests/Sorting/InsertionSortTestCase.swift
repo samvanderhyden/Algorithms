@@ -32,15 +32,6 @@ class InsertionSortTestCase: XCTestCase {
         verifySort(items: sorted)
     }
     
-    // Test insertion sort performance
-    // MBP avg = 5.041 seconds
-    func testInsertionSortPerformance() {
-        self.measure {
-            let items = randomIntList(size: 10000, lower: 0, upper: 200)
-            let _ = insertionSort(items: items)
-        }
-    }
-    
 }
 
 

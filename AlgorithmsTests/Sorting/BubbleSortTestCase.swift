@@ -25,14 +25,7 @@ class BubbleSortTestCase: XCTestCase {
         verifySort(items: items, by: {$1 < $0})
     }
     
-    // Test bubble sort performance
-    // MBP avg = 30.729 seconds
-    func testBubbleSortPerformance() {
-        self.measure {
-            var items = randomIntList(size: 10000, lower: 0, upper: 200)
-            bubbleSort(items: &items)
-        }
-    }
+    
     
     // Test sort with zero items
     func testSortZeroItems(){

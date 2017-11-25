@@ -31,15 +31,6 @@ class QuickSortTestCase: XCTestCase {
         quickSort(items: &items, partitionType: .lumato, by: { $1 < $0 })
         verifySort(items: items, by: { $1 < $0 })
     }
-
-    // Test performance of lumato partition
-    // MBP avg = 0.070 seconds
-    func testQuicksortLumatoPerf() {
-        self.measure {
-            var items = randomIntList(size: 10000, lower: 0, upper: 200)
-            quickSort(items: &items, partitionType: .lumato)
-        }
-    }
     
     // Test Hoare parition
     func testQuicksortHoare(){
@@ -63,13 +54,4 @@ class QuickSortTestCase: XCTestCase {
         verifySort(items: items, by: { $1 < $0 })
     }
     
-    // Test performance of hoare partition
-    // MBP average = 0.047 seconds
-    func testQuicksortHoarePerf() {
-        // This is an example of a performance test case.
-        self.measure {
-            var items = randomIntList(size: 10000, lower: 0, upper: 200)
-            quickSort(items: &items, partitionType: .hoare)
-        }
-    }
 }

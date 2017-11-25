@@ -31,14 +31,4 @@ class SelectionSortTestCase: XCTestCase {
         selectionSort(items: &items)
         verifySort(items: items)
     }
-    
-    // Test selection sort performance
-    // MBP avg = 6.28 seconds
-    func testSelectionSortPerformance() {
-        self.measure {
-            var items = randomIntList(size: 10000, lower: 0, upper: 200)
-            selectionSort(items: &items)
-        }
-    }
-    
 }

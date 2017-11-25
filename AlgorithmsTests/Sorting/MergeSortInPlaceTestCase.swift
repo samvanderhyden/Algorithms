@@ -11,20 +11,11 @@ import XCTest
 
 class MergeSortInPlaceTestCase: XCTestCase {
 
+    // Test the mergesort in place
     func testMergeSortInPlace() {
         var items = randomIntList(size: 100, lower: 0, upper: 200)
         mergeSortInPlace(items: &items)
         verifySort(items: items)
-    }
-    
-    // Test performance of in place merge sort
-    // MBP avg = 1.468 seconds
-    // I am not sure why this is so slow
-    func testMergeSortInPlacePerf() {
-        self.measure {
-            var items = randomIntList(size: 10000, lower: 0, upper: 200)
-            mergeSortInPlace(items: &items)
-        }
     }
     
     // Test merging ranges that are already in the correct order
