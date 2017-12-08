@@ -55,13 +55,13 @@ func quickSortCore<T:Comparable>(items:inout [T], low:Int, high:Int, partitionTy
     case .lumato:
         // in the lumato partition, the idx returned is in its final position, so subract 1 here so we don't
         // re-partition the index returned
-        endFirst = partitionLumato(items: &items, low: low, high: high, by:by) - 1
+        endFirst = partitionLumato(items: &items, low: low, high: high, by: by) - 1
         startSecond = endFirst + 2
     default:
         // in the hoare partition, the idx returned is not necessairly in its final position, so don't subtract 1
         // we just know that the value at idx is less than all values in greater indicies
         // but we still need to include it in sort of [low,idx] because it might be less than previous values
-        endFirst = partitionHoare(items: &items, low: low, high: high, by:by)
+        endFirst = partitionHoare(items: &items, low: low, high: high, by: by)
         startSecond = endFirst + 1
     }
     
@@ -94,7 +94,7 @@ func partitionLumato<T:Comparable>(items:inout [T], low:Int, high:Int, by: SortC
     
     // if we end at a situation where the pivot element
     // is less than the i+1 element, swap them
-    if(by(items[high], items[i+1])){
+    if by(items[high], items[i+1]) {
         items.swapAt(i+1, high)
     }
     

@@ -93,4 +93,13 @@ class SortPerformanceTestCase: XCTestCase {
             selectionSort(items: &items)
         }
     }
+    
+    // Test counting sort performance
+    // MBP avg = 0.009 seconds
+    func testCountingSortPerformance() {
+        self.measure {
+            let items = randomIntList(size: 10000, lower: 0, upper: 200)
+            let _ = countingSort(items: items, maxValue: 200)
+        }
+    }
 }

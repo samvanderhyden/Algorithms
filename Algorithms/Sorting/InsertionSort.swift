@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- Insertion sort: a non optimal sorting algorithm where the output is iterated over with each item from the input in order to determine that items insertion position
+ Insertion sort: a non optimal sorting algorithm where the output is iterated over with each item from the input in order to determine that item's insertion position
  
  - param items: the list of items to sort
  - param by: the comparator to use, defaults to <
