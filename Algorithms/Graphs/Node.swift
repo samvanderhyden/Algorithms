@@ -8,7 +8,13 @@
 
 import Foundation
 
-struct Node<T> {
-    let data:T
-    let children:[Node<T>]
+protocol NodeProtocol {
+    associatedtype Element
+    /// value that the node holds
+    var value: Element { get }
+    
+    /// reference to all children in the node
+    var children: [Self] { get }
 }
+
+

@@ -9,34 +9,64 @@
 import Foundation
 
 /**
- First in first out list of items
+ Abstraction for a queue / stack data structure
  */
-struct Queue<T>: Sequence, IteratorProtocol {
-    private var items = [T]()
-    typealias Element = T
-    typealias Iterator = Queue<T>
+protocol Queue {
+    associatedtype Item
     
-    /**
-    Push an item onto the queue
-     - param item the item to push
-    */
-    mutating func push(item:T){
-        items.append(item)
+    mutating func push(item: Item)
+    mutating func pop() -> Item?
+}
+
+/**
+ An abstract base class that conforms to Queue. Must be overridden.
+ */
+private class AnyQueueBase<Content>: Queue {
+    typealias Item = Content
+    
+    func push(item: Item) {
+        fatalError()
     }
     
-    /**
-    Get the next item out of the queue
-    - returns the next item or nil
-    */
-    mutating func pop() -> T? {
-        return items.count > 0 ? items.removeFirst() : nil
+    func pop() -> Item? {
+        fatalError()
+    }
+}
+
+/**
+ A generic class that inherits from the abstract base queue class and boxes a queue, forwarding all queue methods to the boxed instance
+ */
+private class AnyQueueBox<ConcreteQueue: Queue>: AnyQueueBase<ConcreteQueue.Item> {
+    var concreteQueue: ConcreteQueue
+    
+    init(_ concrete: ConcreteQueue){
+        self.concreteQueue = concrete
     }
     
-    func makeIterator() -> Queue<T>.Iterator {
-        return self
+    override func push(item: ConcreteQueue.Item) {
+        concreteQueue.push(item: item)
     }
     
-    mutating func next() -> Queue<T>.Element? {
-        return pop()
+    override func pop() -> ConcreteQueue.Item? {
+        return concreteQueue.pop()
+    }
+}
+
+/**
+  A type erased queue
+ */
+struct AnyQueue<Content>: Queue {
+    private var box: AnyQueueBase<Content>
+
+    init<Concrete: Queue>(_ queue: Concrete) where Concrete.Item == Content {
+        box = AnyQueueBox(queue)
+    }
+    
+    func push(item: Content) {
+        box.push(item: item)
+    }
+    
+    func pop() -> Content? {
+        return box.pop()
     }
 }
