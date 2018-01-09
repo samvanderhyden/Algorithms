@@ -129,5 +129,4 @@ class BinarySearchTreeTestCase: XCTestCase {
         let items = bt.inOrderTraversal()
         verifySort(items: items)
     }
-    
 }
